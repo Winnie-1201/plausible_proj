@@ -5,11 +5,20 @@ name = "plausible-metabase"
 trigger = { type = "http", base = "/" }
 version = "0.1.0"
 
+[variables]
+token = { required = true }
+
 [[component]]
 id = "plausible-metabase"
 source = "app.wasm"
+allowed_http_hosts = ['https://plausible.io']
+key_value_stores = ["default"]
+sqlite_databases = ["default"]
 [component.trigger]
 route = "/..."
 [component.build]
 command = "spin py2wasm app -o app.wasm"
 watch = ["app.py", "Pipfile"]
+[component.config]
+token = "{{token}}"
+plausible_host = "https://plausible.io"
