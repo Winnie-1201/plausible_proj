@@ -1,0 +1,15 @@
+spin_manifest_version = "1"
+authors = ["Winnie <luwinnie12@gmail.com>"]
+description = ""
+name = "plausible-metabase"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "plausible-metabase"
+source = "app.wasm"
+[component.trigger]
+route = "/..."
+[component.build]
+command = "spin py2wasm app -o app.wasm"
+watch = ["app.py", "Pipfile"]
